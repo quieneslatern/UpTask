@@ -3,6 +3,15 @@ const routes = require('./routes');
 const path = require('path');
 const bodyParser = require('body-parser');
 
+//
+const db = require('./config/db');
+
+require('./models/Proyectos')
+
+db.sync()
+    .then(() => console.log('Conectado Mysql'))
+    .catch(error => console.log(error));
+
 //create app of express
 const app = express();
 
