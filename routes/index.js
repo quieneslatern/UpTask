@@ -14,7 +14,14 @@ module.exports = () => {
         body('nombre').not().isEmpty().trim().escape(),
         proyectosController.nuevoProyecto
         );
+    router.post('/nuevo-proyecto/:id', 
+        body('nombre').not().isEmpty().trim().escape(),
+        proyectosController.actualizarProyecto
+        );
+
     router.get('/proyectos/:url', proyectosController.proyectoPorURL);
     
+    router.get('/proyectos/editar/:id', proyectosController.formularioEditar);
+
     return router;
 } 
