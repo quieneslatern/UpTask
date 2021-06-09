@@ -12,7 +12,8 @@ const db = require('./config/db');
 const { nextTick } = require('process');
 
 //include model of table Proyectos
-require('./models/Proyectos')
+require('./models/Proyectos');
+require('./models/Tareas');
 
 //db.authenticate()
 db.sync()
