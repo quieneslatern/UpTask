@@ -23,5 +23,7 @@ module.exports = () => {
     
     router.get('/proyectos/editar/:id', proyectosController.formularioEditar);
 
+    router.delete('/proyectos/:url', proyectosController.eliminarProyecto)
+    
     return router;
 } 

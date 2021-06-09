@@ -1,5 +1,6 @@
 const Proyectos = require('../models/Proyectos');
 const slug = require('slug');
+const { reset } = require('slug');
 
 exports.proyectosHome = async (req, res) => {
     const proyectos = await Proyectos.findAll();
@@ -22,7 +23,7 @@ exports.formularioProyecto = async (req, res) => {
 exports.nuevoProyecto = async (req, res) => {
     const proyectos = await Proyectos.findAll();
     const { nombre } = req.body;
-
+    console.log('nuevo');
     let errores = [];
 
     if(!nombre) {
@@ -37,10 +38,10 @@ exports.nuevoProyecto = async (req, res) => {
         });
     } else {
 
-        const proyecto = await Proyectos.create({ nombre, url });
+        const proyecto = await Proyectos.create({ nombre });
         res.redirect('/');  
     }
-    res.send('Enviaste el Formulario', );
+    //res.send('Enviaste el Formulario', );
 }
 
 exports.proyectoPorURL = async (req, res) => {
@@ -107,5 +108,18 @@ exports.actualizarProyecto = async (req, res) => {
         );
         res.redirect('/');  
     }
-    res.send('Enviaste el Formulario', );
+    res.send('Enviaste el Formulario', );  
+}
+
+exports.eliminarProyecto = async (req, res, next) => {
+    console.log(req.params)
+    const urlProyecto = req.params.url;
+    console.log('ppp - ' + urlProyecto);
+    const resultado = await Proyectos.destroy({where: { url : urlProyecto}});
+    
+    if(!resultado) {
+        return next();
+    }
+
+    res.status(200).send('Proyecto eliminado correctamente')
 }
