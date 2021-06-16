@@ -18,7 +18,8 @@ if(btnEliminar) {
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, borrar!'
+            confirmButtonText: 'Si, borrar!',
+            cancelButtonText: 'No, cancelar',
         }).then((result) => {
             if (result.isConfirmed) {
 

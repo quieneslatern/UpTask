@@ -11,6 +11,7 @@ const Proyectos = db.define('proyectos', {
     },
     nombre: Sequelize.STRING,
     url: Sequelize.STRING,
+    usuarioID: Sequelize.INTEGER,
 }, {
     hooks: {
         beforeCreate(Proyecto) {
